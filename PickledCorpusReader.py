@@ -84,7 +84,7 @@ class PickledCorpusReader(CategorizedCorpusReader,CorpusReader):
 if __name__ == '__main__':
     from collections import Counter
 
-    corpus = PickledCorpusReader('C:\\Users\\vijay\\Desktop\\Rama\\Python NLP projects\\Document classification\\sample')
+    corpus = PickledCorpusReader('../corpus')
     words = Counter(corpus.words())
 
     print("{:,} vocabulary {:,} word count".format(len(words.keys()),sum(words.values())))
