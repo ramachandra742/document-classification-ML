@@ -1,7 +1,7 @@
 """ Dataset stats """
 from PickledCorpusReader import PickledCorpusReader
 
-reader = PickledCorpusReader('C:\\Users\\vijay\\Desktop\\Rama\\Python NLP projects\\Document classification\\sample')
+reader = PickledCorpusReader('../corpus')
 
 for category in reader.categories():
 
