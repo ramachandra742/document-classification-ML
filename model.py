@@ -96,7 +96,7 @@ def pipeline(estimator, reduction=False):
 
 labels = ['books','cinema','cooking','gaming','sports','tech','data_science',\
             'design','news','politics','do_it_yourself','business']
-reader = PickledCorpusReader('C:\\Users\\vijay\\Desktop\\Rama\\Python NLP projects\\Document classification\\sample')
+reader = PickledCorpusReader('../corpus')
 loader = CorpusLoader(reader, 5, shuffle=True, categories=labels)
 
 models = []
