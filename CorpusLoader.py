@@ -42,5 +42,5 @@ class CorpusLoader(object):
 if __name__ == '__main__':
     from PickledCorpusReader import PickledCorpusReader as reader
 
-    corpus = reader('C:\\Users\\vijay\\Desktop\\Rama\\Python NLP projects\\Document classification\\sample')
+    corpus = reader('../corpus')
     loader=CorpusLoader(corpus,folds=5)
