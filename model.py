@@ -11,10 +11,8 @@ from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import SGDClassifier
-from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score, precision_score
 from sklearn.metrics import recall_score, f1_score
@@ -78,18 +76,13 @@ class TextNormalizer(BaseEstimator,TransformerMixin):
             yield self.doc_normalize(doc[0])
 
 # Create pipeline for all models.
-def pipeline(estimator, reduction=False):
+def pipeline(estimator):
     steps=[
     ('normalize',TextNormalizer()),
     ('vectorize',TfidfVectorizer(
     tokenizer = identity, preprocessor=None, lowercase=False
     ))
     ]
-
-    if reduction:
-        steps.append((
-        'reduction',TruncatedSVD(n_components=1000)
-        ))
     # Add the estimator
     steps.append(('classifier',estimator))
     return Pipeline(steps)
@@ -100,19 +93,14 @@ reader = PickledCorpusReader('../corpus')
 loader = CorpusLoader(reader, 5, shuffle=True, categories=labels)
 
 models = []
-names = [LogisticRegression, SGDClassifier]
+names = [LogisticRegression, SGDClassifier,MultinomialNB]
 for model in names:
-    models.append(pipeline(model(),True))
-    models.append(pipeline(model(),False))
-models.append(pipeline(MultinomialNB(),False))
-models.append(pipeline(GaussianNB(), True))
-
+    models.append(pipeline(model()))
+    
 def model_scores(models,loader):
     for model in models:
         name = model.named_steps['classifier'].__class__.__name__
-        if 'reduction' in model.named_steps:
-            name +=" (TruncatedSVD)"
-
+       
         scores = {
         'model':str(model),
         'name':name,
