@@ -1,7 +1,7 @@
 ## Document-Classification
 
 This project aims to classify documents based their categories in the corpus. There are 12 categores in the corpus viz.,\
-'books', 'cinema','cooking', 'gaming', 'sports', 'tech', 'data_science', 'design', 'news', 'politics', 'do_it_yourself',& 'business'.
+'books', 'cinema','cooking', 'gaming', 'sports', 'tech', 'data_science', 'design', 'news', 'politics', 'do_it_yourself', & 'business'.
 **Logistic regression, SVC, & MultinomialNB algorithms** are used for classifying documents.
 
 ### Installation
